@@ -4,6 +4,12 @@
 
 - Removed `jQuery` dependency
 
+### Deprecations
+
+- The `getAutosave`, `getAutosaveAttribute`, and `hasAutosave` selectors were deprecated. Equivalent selectors have been added to the `@wordpress/core-data` package.
+- The `resetAutosave` action creator has been deprecated. An equivalent action creator has been added to the `@wordpress/core-data` package.
+- The `isEditedPostAutosaveable` action creator now requires that the parameter `autosave` is provided.
+
 ## 9.0.6 (2018-12-18)
 
 ### Bug Fixes
