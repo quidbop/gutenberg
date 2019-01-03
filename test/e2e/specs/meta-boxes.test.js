@@ -1,7 +1,13 @@
 /**
  * Internal dependencies
  */
-import { newPost, insertBlock, publishPost } from '../support/utils';
+import {
+	findSidebarPanelWithTitle,
+	insertBlock,
+	newPost,
+	openDocumentSettingsSidebar,
+	publishPost,
+} from '../support/utils';
 import { activatePlugin, deactivatePlugin } from '../support/plugins';
 
 describe( 'Meta boxes', () => {
@@ -57,5 +63,65 @@ describe( 'Meta boxes', () => {
 
 		// Check the the dynamic block appears.
 		await page.waitForSelector( '.wp-block-latest-posts' );
+	} );
+
+	it( 'Should render the excerpt in meta based on post content if no explicit excerpt exists', async () => {
+		await newPost();
+		await insertBlock( 'Paragraph' );
+		await page.keyboard.type( 'Excerpt from content.' );
+		await page.type( '.editor-post-title__input', 'A published post' );
+		await publishPost();
+
+		// View the post.
+		const viewPostLinks = await page.$x( "//a[contains(text(), 'View Post')]" );
+		await viewPostLinks[ 0 ].click();
+		await page.waitForNavigation();
+
+		// Retrieve the excerpt used as meta
+		const metaExcerpt = await page.evaluate( () => {
+			return document.querySelector(
+				'meta[property="gutenberg:hello"]'
+			).getAttribute(
+				'content'
+			);
+		} );
+
+		expect( metaExcerpt ).toEqual( 'Excerpt from content.' );
+	} );
+
+	it( 'Should render the explicitly set excerpt in meta instead of the content based one', async () => {
+		await newPost();
+		await insertBlock( 'Paragraph' );
+		await page.keyboard.type( 'Excerpt from content.' );
+		await page.type( '.editor-post-title__input', 'A published post' );
+
+		// Open the excerpt panel
+		await openDocumentSettingsSidebar();
+		const excerptButton = await findSidebarPanelWithTitle( 'Excerpt' );
+		if ( excerptButton ) {
+			await excerptButton.click( 'button' );
+		}
+
+		await page.waitForSelector( '.editor-post-excerpt textarea' );
+
+		await page.type( '.editor-post-excerpt textarea', 'Explicitly set excerpt.' );
+
+		await publishPost();
+
+		// View the post.
+		const viewPostLinks = await page.$x( "//a[contains(text(), 'View Post')]" );
+		await viewPostLinks[ 0 ].click();
+		await page.waitForNavigation();
+
+		// Retrieve the excerpt used as meta
+		const metaExcerpt = await page.evaluate( () => {
+			return document.querySelector(
+				'meta[property="gutenberg:hello"]'
+			).getAttribute(
+				'content'
+			);
+		} );
+
+		expect( metaExcerpt ).toEqual( 'Explicitly set excerpt.' );
 	} );
 } );
