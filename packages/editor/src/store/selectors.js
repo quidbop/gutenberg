@@ -334,8 +334,8 @@ export function getAutosaveAttribute( state, attributeName ) {
 		plugin: 'Gutenberg',
 	} );
 
-	const postId = getCurrentPostId( state );
-	return select( 'core' ).getAutosaveAttribute( postId, attributeName );
+	const currentPost = getCurrentPost( state );
+	return select( 'core' ).getAutosaveAttribute( currentPost, attributeName );
 }
 
 /**
@@ -498,8 +498,8 @@ export function isEditedPostAutosaveable( state, autosave ) {
 			plugin: 'Gutenberg',
 		} );
 
-		const postId = getCurrentPostId( state );
-		autosave = select( 'core' ).getAutosave( postId );
+		const currentPost = getCurrentPost( state );
+		autosave = select( 'core' ).getAutosave( currentPost );
 	}
 
 	// A post must contain a title, an excerpt, or non-empty content to be valid for autosaving.
@@ -541,8 +541,8 @@ export function getAutosave( state ) {
 		plugin: 'Gutenberg',
 	} );
 
-	const postId = getCurrentPostId( state );
-	return select( 'core' ).getAutosave( postId );
+	const currentPost = getCurrentPost( state );
+	return select( 'core' ).getAutosave( currentPost );
 }
 
 /**
@@ -558,8 +558,8 @@ export function hasAutosave( state ) {
 		plugin: 'Gutenberg',
 	} );
 
-	const postId = getCurrentPostId( state );
-	return select( 'core' ).hasAutosave( postId );
+	const currentPost = getCurrentPost( state );
+	return select( 'core' ).hasAutosave( currentPost );
 }
 
 /**
