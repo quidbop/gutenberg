@@ -6,7 +6,7 @@
 
 ### New features
 - The `getAutosave`, `getAutosaveAttribute`, and `hasAutosave` selectors were added.
-- The `resetAutosave` action creator has been added.
+- The `receiveAutosave` action creator has been added.
 
 ## 2.0.15 (2018-12-12)
 
