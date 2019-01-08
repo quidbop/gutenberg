@@ -4,3 +4,4 @@
 
 * See the [Getting Started with JavaScript Tutorial](../../../../docs/designers-developers/developers/tutorials/javascript/readme.md) to learn about how to use JavaScript within WordPress.
 
+* Learn how to add customized buttons to the toolbar with the [Format API tutorial](../../../../docs/designers-developers/developers/tutorials/format-api/0-intro.md).
