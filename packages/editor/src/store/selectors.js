@@ -489,8 +489,8 @@ export function isEditedPostEmpty( state ) {
 /**
  * Returns true if the post can be autosaved, or false otherwise.
  *
- * @param  {Object} state    Global application state.
- * @param  {Object} autosave An autosave object.
+ * @param {Object} state    Global application state.
+ * @param {Object} autosave An autosave object.
  *
  * @return {boolean} Whether the post can be autosaved.
  */
@@ -596,7 +596,7 @@ export function isEditedPostBeingScheduled( state ) {
  * infer that a post is set to publish "Immediately" we check whether the date
  * and modified date are the same.
  *
- * @param  {Object}  state Editor state.
+ * @param {Object} state Editor state.
  *
  * @return {boolean} Whether the edited post has a floating date value.
  */
@@ -787,8 +787,8 @@ export const getBlocks = createSelector(
  * Returns an array containing the clientIds of all descendants
  * of the blocks given.
  *
- * @param {Object} state Global application state.
- * @param {Array} clientIds Array of blocks to inspect.
+ * @param {Object} state     Global application state.
+ * @param {Array}  clientIds Array of blocks to inspect.
  *
  * @return {Array} ids of descendants.
  */
@@ -1526,6 +1526,7 @@ export function isBlockInsertionPointVisible( state ) {
  * Returns whether the blocks matches the template or not.
  *
  * @param {boolean} state
+ *
  * @return {?boolean} Whether the template is valid or not.
  */
 export function isValidTemplate( state ) {
@@ -1536,6 +1537,7 @@ export function isValidTemplate( state ) {
  * Returns the defined block template
  *
  * @param {boolean} state
+ *
  * @return {?Array}        Block Template
  */
 export function getTemplate( state ) {
@@ -1845,8 +1847,8 @@ function getInsertUsage( state, id ) {
 /**
  * Returns whether we can show a block type in the inserter
  *
- * @param {Object} state Global State
- * @param {Object} blockType BlockType
+ * @param {Object}  state        Global State
+ * @param {Object}  blockType    BlockType
  * @param {?string} rootClientId Optional root client ID of block list.
  *
  * @return {boolean} Whether the given block type is allowed to be shown in the inserter.
@@ -1862,9 +1864,9 @@ const canIncludeBlockTypeInInserter = ( state, blockType, rootClientId ) => {
 /**
  * Returns whether we can show a reusable block in the inserter
  *
- * @param {Object} state Global State
- * @param {Object} reusableBlock Reusable block object
- * @param {?string} rootClientId Optional root client ID of block list.
+ * @param {Object}  state         Global State
+ * @param {Object}  reusableBlock Reusable block object
+ * @param {?string} rootClientId  Optional root client ID of block list.
  *
  * @return {boolean} Whether the given block type is allowed to be shown in the inserter.
  */
