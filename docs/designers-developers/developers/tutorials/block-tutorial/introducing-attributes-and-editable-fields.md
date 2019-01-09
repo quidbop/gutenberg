@@ -13,7 +13,7 @@ One challenge of maintaining the representation of a block as a JavaScript objec
 ```js
 var el = wp.element.createElement,
 	registerBlockType = wp.blocks.registerBlockType,
-	RichText = wp.editor.RichText;
+	RichText = wp.blocks.RichText;
 
 registerBlockType( 'gutenberg-boilerplate-es5/hello-world-step-03', {
 	title: 'Hello World (Step 3)',
